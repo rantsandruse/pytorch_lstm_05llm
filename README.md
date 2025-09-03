@@ -1,10 +1,5 @@
-Running OAI: 
----
-layout: post
-title:  "Pytorch with NLP in five days - Day 5: Parameter-Efficient Fine-tuning with LoRA"
-date:   2025-09-02 11:17:18 -0800
-categories: pytorch in five days
----
+Pytorch with NLP in five days - Day 5: Parameter-Efficient Fine-tuning with LoRA
+
 Note: run `uv sync` to install related packages 
 
 Ironically it took me another four years before I got to write this post.  A lot of things have happened in the past three years. Now there's a brave new world, filled with wonderous and capricious large language models. Sentiment analysis is no longer viewed an isolated NLP tasks, now that all the LLMs can multi-task. Hand coding NLP models from scatch is not necessary for many small companies, as they can just use OPENAI APIs. 
@@ -120,13 +115,13 @@ Training Time: 27.7 minutes
 #### Just out of curiousity 
 Just out of curiousity, I also ran IMDB test set through OpenAI API. 
 And here are the comparisons: 
-LSTM (from tutorial 4): Accuracy ~ 0.88 
-distillRoberta-base + LORA: Accuracy ~ 0.92 
-OPENAI GPT4o ~ 0.91 for zeroshot; 0.93 for few shot. 
+- LSTM (from tutorial 4): Accuracy ~ 0.88 
+- distillRoberta-base + LORA: Accuracy ~ 0.92 
+- OPENAI GPT4o: ~ 0.91 for zeroshot; 0.93 for few shot. 
 
 Arguably comparing Roberta vs OPENAI model is still a bit like david vs Goliath, as distillRoberta-base has ~82M parameters vs ~200B parameters for GPT4. It seems like this is a task that one could get away with much smaller models, even though the larger models still have a small edge. 
 
-### When to Use LoRA?
+#### When to Use LoRA?
 
 - **Limited computational resources** (single GPU, limited VRAM)
 - **Multiple similar tasks** where you want to share a base model
@@ -135,7 +130,7 @@ Arguably comparing Roberta vs OPENAI model is still a bit like david vs Goliath,
 - **Fine-tuning very large models** (>1B parameters)
 
 ### Conclusion
-This concludes our "PyTorch with NLP in Five Days" journey, which took me three years to finish (and end up scrambling to catch up). We've evolved from basic text processing (Day 1) through traditional ML (Days 2-3) and neural networks (Day 4) to parameter-efficient transformer fine-tuning and calling commerical LLM API (Day 5). Day1-Day4 code was entirely handwritten, where as Day5 was ~99% vibe-coded. 
+This concludes our "PyTorch with NLP in Five Days" journey, which took me three years to finish (and end up scrambling to catch up). We've evolved from basic neural networks training (Day 1) to parameter-efficient transformer fine-tuning and calling commerical LLM API (Day 5). Day1-Day4 code was entirely handwritten, whereas Day5 was ~99% vibe-coded. 
 
 This may not be much of an prediction, but I believe that large model capabilities will continue to advance, while small, on-device models are becoming increasingly powerful. 
 
@@ -148,12 +143,9 @@ This may not be much of an prediction, but I believe that large model capabiliti
 ### OpenAI API Optimization
 2. **Batch processing**: I batched the reviews to save on overhead costs when making API calls.
 
-3. **Token optimization**: I used only the last 500 characters of each review to save tokens. This came from data analysis - I noticed that reviews often start with misleadingly positive notes but end with the actual sentiment (e.g., "this is my favorite childhood movie... but now I hate it so much").
+3. **Token optimization**: I used only the last 500 characters of each review to save tokens. This came from data analysis - I noticed that reviews often start with misleadingly positive notes but end with the actual sentiment (e.g., "this is my favorite childhood movie... but now I hate it so much"). I guess the more important tip here is **always examine your data first**. This is a technique that will hopefully never go out of date, even though the best models surely will. 
 
-### Universal Tip 
-4. **Always examine your data first**: Look at your data first before training a model or calling an API. This is a technique that will hopefully never go out of date, even though the models surely will. 
-
-## installatins and files 
+## files
 - **`fine_tuning_lora_colab.ipynb`**: Google Colab notebook with optimized LoRA implementation, ready to run on free Colab tier
 - **`openai_api_run.ipynb`**: Notebook for running IMDB sentiment analysis using OpenAI API for comparison
 - **`out_of_box.py`**: Python script for running GPT4 model out of the box without fine-tuning
