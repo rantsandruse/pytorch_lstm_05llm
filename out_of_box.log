@@ -1,0 +1,92 @@
+Evaluating OpenAI API approaches on IMDB sentiment analysis...
+============================================================
+Full test set size: 25000
+Using the same 25000 samples for both approaches
+
+1. Zero-shot batch approach:
+Starting Zero-shot batch evaluation with 25000 samples...
+Using batch size: 10
+Zero-shot Accuracy: 0.9055
+Zero-shot Time: 2061.99 seconds for 25000 samples
+API calls made: ~2500
+Cost estimate: ~$1.50
+
+2. Few-shot batch approach:
+Starting Few-shot batch evaluation with 25000 samples...
+Using batch size: 10
+Few-shot Accuracy: 0.9314
+Few-shot Time: 5166.93 seconds for 25000 samples
+API calls made: ~2500
+Cost estimate: ~$2.50
+
+============================================================
+Summary:
+Zero-shot: 0.9055 accuracy
+Few-shot: 0.9314 accuracy
+Note: Fine-tuned DistilBERT typically achieves ~92.5% accuracy
+
+============================================================
+ERROR ANALYSIS:
+
+Zero-shot errors (showing first 10 of 2362):
+1. True: positive, Predicted: negative
+   Text: ... thought love was a myth. Scott Thomas is also quite fine as the woman who fights against her passions. As for Binoche, she richly deserved the Oscar that she was presented, as her nurse is a shining example of hope in a hopeless situation. The scenery is utterly gorgeous, as are the costumes, the direction, and the production. If you have missed out on viewing this film, rectify that soon, very soon. The English Patient will remain one of the greatest achievements in film for centuries to come.
+
+2. True: negative, Predicted: positive
+   Text: ... place to stay, she doesn't know what to do next. And then about 10-12 years later, when things are better for her, she just leaves the same kid without any warning to take up the career she was dreaming about.<br /><br />I just don't get it - I don't see how is it possible that she would do such thing, it was the opposite action to all that she done so far in her life when all that she was doing was aimed on that child survival. After this character flip I just couldn't enjoy rest of the movie.
+
+3. True: negative, Predicted: positive
+   Text: ...uffy the Vampire Slayer: The Series", "Angel: The Series" and "The Addams Family" movies) give a convoluted reason for topless women. Mr. and Mrs. Permatteo played by television regulars (Richard Riehle "Grounded for Life", Patrika Darbo "Step by Step")as the older couple that you know don't stand a chance, even the tour guide Shawn (Parry Shen) is a fleshed out character. I hope to see more from all involved in this film, but I think it will play better on home video than in the theater, sorry.
+
+4. True: positive, Predicted: negative
+   Text: ... A parade of stereotypical characters enter the scene including Shemp of the Three Stooges. Charlie seems to move quickly around the city going from Sutton Pl. to the W. Village in a flash.The ending is silly. An obvious toy airplane is used as it climbs through the sky and then nose dives. Ed Wood couldn't have done it better. The final scene is absurd as the murderer will obviously incriminate himself in his attempt to quiet the one person who knows his identity. Overall, it is worth watching.
+
+5. True: negative, Predicted: positive
+   Text: ... could have and this wrecked the whole film for me.<br /><br />This said, all three leads put in powerful performances although Kevin McKidd's characters' transformation by the end goes a little further than is fully convincing and it does create a very powerful ethical triangle.<br /><br />This film is recommended if you ready yourself to walk out when the mother and the sister are lying on the bed. But do not watch further than this unless you have only a pinch, but several mountains, of salt.
+
+6. True: positive, Predicted: negative
+   Text: ... left two "widows" pining over him, bawling. I found it revolting when when Sandy told him she wanted to break it off after meeting his wife, he calls her saying he misses her (did he call his wife? There was no sign of that). He behaved like a heel. It perhaps would have made a more interesting film had he not been killed off. Perhaps both ladies would have wised up and dumped him. I liked the friendship between the two ladies but it was spoiled by what they had in common: The Cad of a husband.
+
+7. True: positive, Predicted: negative
+   Text: ...use he now has the mindset of his donor. Well, of course this is all pretty improbable and features medical equipment that looks to have been purchased at Radio Shack, and overall it's pretty cheesy and sleazy. But, it has a good early 70's look and feel to it and the music is cool. This isn't so much a horror movie but more a thriller with lots of thugs battling it out over turf and babes and other thug-type things, but it's strangely entertaining in ways I can't begin to describe. 7 out of 10.
+
+8. True: positive, Predicted: negative
+   Text: ... his DVD commentary - is meant to drive a "vortex of emotion" pushing Pip to his breaking point, and it certainly accomplishes that. My only criticisms are that the overall effect is too "schmaltzy" or artificial for an audience to truly identify with, much of the supporting dialog (and the ending) too contrived and predictable, and the direction needed to be sharper to curtail sloppy overacting in some scenes. I do recommend it, 7 stars out of 10, including extra points for a noteworthy effort.
+
+9. True: positive, Predicted: negative
+   Text: ...caster leaves, Douglas sneers about confessing under duress, only to see the gun is unloaded. Suddenly he realizes that (legally - in 1948) he has confessed without duress. Hate to say it, to any civil libertarians reading this note, but what Cobb/Lloyd does to Dinehart and his pals in the conclusion of "The Cat's Paw" was not only legal, but would have led to their jail sentences in 1934. We may call it heavy handed, fascistic, or horrid, but it would have worked legally when it was thought up.
+
+10. True: positive, Predicted: negative
+   Text: ...y limbo, seeking to kill black motorists. "Route 666" is another good installment (which isn't uncommon, I've noticed) which contains a few notable aspects pertaining to the pair of main characters such as Dean getting laid and Sam's admitted regret for having left college... The killer truck does't come across as the most terrifying thing in the world, though, for an hour long show, it does it's job well. Not a hands-down fantastic episode, but a solid concept with more horror movie references.
+
+
+Few-shot errors (showing first 10 of 1715):
+1. True: positive, Predicted: negative
+   Text: The theme is controversial and the depiction of the hypocritical and sexually starved india is excellent.Nothing more to this film.There is a lack of good dialogues(why was the movie in english??). There was lack of continuity and lack of passion/emotion in the acting.
+
+2. True: positive, Predicted: negative
+   Text: ...st feeds it in to the public. I clearly remember the resentment I felt for the evil Davidians that I saw on CNN in 1993. Now that I'm older I can see a clear line of communication coming out of the government every time they are gearing up for a massacre of civilians along with the intended targets. Demonizing people with words like; "they have different unlawful values then us" "they don't enjoy freedom" and "they are a threat to our freedoms and way of life" makes them so much easier to kill
+
+3. True: positive, Predicted: negative
+   Text: ...ter if this sick system remained in place. Some sort of an epilogue would have been nice--such as showing the soldiers coming for Robespierre. He responded by trying to kill himself first, but he only succeeded in blowing off part of his face--still alive, he was guillotined shortly afterward. This would have been a dandy little epilogue and could have been done in about five minutes. However, not showing a connection between Danton's death and the fall of the government is an odd thing to omit.
+
+4. True: negative, Predicted: positive
+   Text: ...the film if they liked. Since I was in no fit state to get up, I just stayed in the living room with them and ended up watching the film! I have to say, as a person who has no interest in those kinds of TV shows or films, I actually enjoyed it... it must have been the alcohol lol but I do admit, it would probably only appeal more to girls aged between 6 and 13, but it was a movie to pass the time. There's always a movie or a show that you don't think you'll like, but for a laugh, you enjoyed it.
+
+5. True: positive, Predicted: negative
+   Text: ...egangers as it was called in Europe is enjoyable for the imaginary vision of Europe in space in the shadow of the Superpowers. Gerry and Sylvia Anderson's ambitious epic gets a little tedious when the American astronaut finally realizes that he is on the doppleganger Earth, and everything is literally downhill after the poetically graceful shuttle boarding sequence. A mediocre story is helped along by a grand and lyrical classical score by the late great Barry Gray, the John Williams of Britain.
+
+6. True: positive, Predicted: negative
+   Text: ... get these days. George Clooney teaches our young that we ought sympathize with suicide bombers, while Steven Spielberg teaches there is no moral difference between the Olympic athletes murdered in 1972 in Munich and the Palestinian terrorists who killed them. Hollywood 2005 derives their moral compass from too much cocaine and too much commitment to the wacky left. I wonder how all this plays out in Liberal, Kansas. Liberal, after all, was not a dirty word 150 years ago when the city was named.
+
+7. True: negative, Predicted: positive
+   Text: ...MIGs, at zero safety distance, while bouncing off car-sized ice blocks like ping-pong balls. The director should watch Apollo 13 to learn the limitations of spacecraft like these.<br /><br />I like the music score because it is dramatic to a degree making it very touching. The overall performance of the actors is great. Apart from the things mentioned above the story is interesting and quite easy to follow.<br /><br />With some minor changes this would have been a 8/10 movie. I'm sorry it isn't!
+
+8. True: positive, Predicted: negative
+   Text: ...yet to director her fourth feature film. When she does I hope she remembers to go with what she believes but to be fair as well. I think, actually she was fair to the two lead character in this film, but didn't pay enough attention to the others. In addition to the unnuanced father, Jennifer Jason Leigh's Caroline was unfinished, leaving us to wonder about why she did some of the things she did. And the husbands needed to be something more than mannequins. They needed to be engaged and involved.
+
+9. True: positive, Predicted: negative
+   Text: ...ut doesn't get quite as much in return. Actually, for a while I thought he was Steve Guttenberg from Police Academy (1984). He has a few funny lines and if this was a Meg Ryan-picture, they'd call it a romantic comedy.<br /><br />Running over two hours, a few scenes could have been edited or left out completely, eg. Jane's and Aaron's trip to Central America. Also, I'm a sucker for happy endings and had preferred a different ending than just a reunion between the three of them seven years later.
+
+10. True: negative, Predicted: positive
+   Text: ... with two stories: Yzma returns for payback and one Ms. Birdwell hopes to defeat Kronk's camp counseling championship. This all leads up to Kronk confronting his father and his disapproval over his son's direction in life.<br /><br />From Lord of the Rings to Michael Jackson's Thriller, Kronk's New Groove recycles every bit of time that it allows to entertain its viewers. If you loved the original, or are looking forward to the upcoming TV series about Kuzco, I recommend Kronk to his loyal fans.

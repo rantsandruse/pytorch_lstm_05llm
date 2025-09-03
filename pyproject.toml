@@ -1,0 +1,41 @@
+[project]
+name = "pytorch-lstm-imdb"
+version = "0.1.0"
+description = "PyTorch LSTM and DistilBERT models for IMDB sentiment analysis"
+requires-python = ">=3.8"
+dependencies = [
+    "torch>=2.0.0",
+    "torchtext>=0.15.0",
+    "transformers>=4.21.0",
+    "scikit-learn>=1.0.0",
+    "numpy>=1.21.0",
+    "datasets>=2.0.0",
+    "openai>=1.104.2",
+    "dotenv>=0.9.9",
+    "peft>=0.13.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=22.0.0",
+    "flake8>=5.0.0",
+    "mypy>=1.0.0",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "jupyter>=1.0.0",
+    "matplotlib>=3.5.0",
+    "seaborn>=0.11.0",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
