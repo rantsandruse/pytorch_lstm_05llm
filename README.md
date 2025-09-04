@@ -114,7 +114,7 @@ Training Time: 27.7 minutes
 ```
 
 #### Running IMDB dataset through OPENAI API 
-Out of curiousity, I also ran IMDB test set through OpenAI API. 
+Out of curiousity, I also ran IMDB test set through OpenAI API. Note that I'm batching 10 samples at a time to reduce overhead, and also only taking the last 500 hundred characters to reduce the amount of tokens. 
 
 ```python
 from openai import OpenAI
