@@ -1,7 +1,5 @@
 # Pytorch with NLP in five days - Day 5: Parameter-Efficient Fine-tuning with LoRA
 
-Note: run `uv sync` to install related packages 
-
 Ironically, it took me another four years to finally write this final post of the series. The past three years have ushered in a brave new world of large language models, both wondrous and unpredictable. Sentiment analysis is no longer treated as a siloed NLP task, as LLMs can multitask with ease. Hand-coding models from scratch is no longer a necessity for most small companies either, as there's no need to reinvent a worse wheel at a higher cost when OPENAI API is a call away. 
 
 While the argument is not yet settle for customized, small LLMs vs. generalized, large LLM, I will close out this series by exploring: 
@@ -193,6 +191,7 @@ This may not be a bold prediction, but I believe that large model capabilities w
 
 
 ## files
+Note: run `uv sync` to install related packages 
 - **`fine_tuning_lora_colab.ipynb`**: Google Colab notebook with optimized LoRA implementation, ready to run on free Colab tier
 - **`openai_api_run.ipynb`**: Notebook for running IMDB sentiment analysis using OpenAI API for comparison
 - **`out_of_box.py`**: Python script for running GPT4 model out of the box without fine-tuning
