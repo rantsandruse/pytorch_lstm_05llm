@@ -1,18 +1,19 @@
-Pytorch with NLP in five days - Day 5: Parameter-Efficient Fine-tuning with LoRA
+# Pytorch with NLP in five days - Day 5: Parameter-Efficient Fine-tuning with LoRA
 
 Note: run `uv sync` to install related packages 
 
-Ironically it took me another four years before I got to write this post.  A lot of things have happened in the past three years. Now there's a brave new world, filled with wonderous and capricious large language models. Sentiment analysis is no longer viewed an isolated NLP tasks, now that all the LLMs can multi-task. Hand coding NLP models from scatch is not necessary for many small companies, as they can just use OPENAI APIs. 
+Ironically, it took me another four years to finally write this final post of the series. The past three years have ushered in a brave new world of large language models, both wondrous and unpredictable. Sentiment analysis is no longer treated as a siloed NLP task, as LLMs can multitask with ease. Hand-coding models from scratch is no longer a necessity for most small companies either, as there's no need to reinvent a worse wheel at a higher cost when OPENAI API is a call away. 
 
 While the argument is not yet settle for customized, small LLMs vs. generalized, large LLM, I will close out this series by exploring: 
 1. **PEFT(Parameter efficient fine tuning) using LoRA (Low-Rank Adaptation)** This technique allows us to achieve comparable performance to full fine-tuning while using a fraction of the memory and computational resources.
-2. **Just calling OPENAI API** And see how the results compare. 
+2. **Just calling OPENAI API** And see how the results stack up. 
 
 ### The Parameter-Efficient Revolution
 
-Full fine-tuning of large models requires storing gradients for millions of parameters, making it memory-intensive and slow. LoRA (Low-Rank Adaptation) learns small, low-rank matrices that adapt the pre-trained model's behavior without modifying the original weights. This approach typically uses 90% less memory while maintaining similar performance. 
+Full fine-tuning of large models requires updating and storing gradients for millions of parameters, making it memory-intensive and slow. LoRA (Low-Rank Adaptation) learns small, low-rank matrices that adapt the pre-trained model's behavior without modifying the original weights. This approach typically uses 90% less memory while maintaining similar performance. 
 
-The other more practical reason is, Huggingface already offers a full model fine tuning tutorial for IMDB dataset with Distilbert (https://huggingface.co/docs/transformers/en/tasks/sequence_classification). So I figured I should do something different.  
+There's also a practical reason I chose this path. Hugging Face already provides an excellent full fine-tuning tutorial for the IMDB dataset using DistilBERT ([link here](https://huggingface.co/docs/transformers/en/tasks/sequence_classification)). Rather than repeating that, I wanted to highlight an alternative approach—one that's both efficient and increasingly relevant in the LLM era.
+
 
 ### What is LoRA (Low-Rank Adaptation)?
 
@@ -112,14 +113,17 @@ Training Time: 27.7 minutes
 ✅ Training completed! Final accuracy: 92.1%
 ```
 
-#### Just out of curiousity 
-Just out of curiousity, I also ran IMDB test set through OpenAI API. 
+#### Running IMDB dataset through OPENAI API 
+Out of curiousity, I also ran IMDB test set through OpenAI API. 
+
+
+
 And here are the comparisons: 
 - LSTM (from tutorial 4): Accuracy ~ 0.88 
 - distillRoberta-base + LORA: Accuracy ~ 0.92 
 - OPENAI GPT4o: ~ 0.91 for zeroshot; 0.93 for few shot. 
 
-Arguably comparing Roberta vs OPENAI model is still a bit like david vs Goliath, as distillRoberta-base has ~82M parameters vs ~200B parameters for GPT4. It seems like this is a task that one could get away with much smaller models, even though the larger models still have a small edge. 
+Arguably comparing Roberta vs OPENAI model is a bit of a David vs Goliath comparison. DistillRoberta-base has ~82M parameters vs ~200B parameters for GPT4. Yet for sentiment analysis, smaller model proves to perform well enough,  even though the larger models has a slight advantage.  
 
 #### When to Use LoRA?
 
@@ -130,10 +134,9 @@ Arguably comparing Roberta vs OPENAI model is still a bit like david vs Goliath,
 - **Fine-tuning very large models** (>1B parameters)
 
 ### Conclusion
-This concludes our "PyTorch with NLP in Five Days" journey, which took me three years to finish (and end up scrambling to catch up). We've evolved from basic neural networks training (Day 1) to parameter-efficient transformer fine-tuning and calling commerical LLM API (Day 5). Day1-Day4 code was entirely handwritten, whereas Day5 was ~99% vibe-coded. 
+This concludes our "PyTorch with NLP in Five Days" journey, which took me four years to finish (and end up scrambling to catch up). We've evolved from data processing for basic neural networks training (Day 1) to parameter-efficient transformer fine-tuning and calling commerical LLM API (Day 5). Day1-Day4 code was entirely handwritten, whereas Day5 was ~99% vibe-coded. 
 
-This may not be much of an prediction, but I believe that large model capabilities will continue to advance, while small, on-device models are becoming increasingly powerful. 
-
+This may not be a bold prediction, but I believe that large model capabilities will continue to push the boundaries of reasoning, creativity and multi-tasking, while small, on-device models are becoming increasingly powerful for specific tasks, such as sentiment analysis, personalization and privacy-sensitive applications.  
 
 ## Tips and Tricks 
 
