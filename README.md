@@ -116,7 +116,47 @@ Training Time: 27.7 minutes
 #### Running IMDB dataset through OPENAI API 
 Out of curiousity, I also ran IMDB test set through OpenAI API. 
 
+```python
+from openai import OpenAI
+import os
+from dotenv import load_dotenv
 
+# Initialize OpenAI client
+client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+
+def batch_classify_sentiment(texts, batch_size=10, model="gpt-4.1-mini"):
+    """Classify sentiment using OpenAI API with batch processing"""
+    all_predictions = []
+    
+    for i in range(0, len(texts), batch_size):
+        batch_texts = texts[i:i + batch_size]
+        
+        # Create numbered list of reviews (using last 500 chars for better sentiment detection)
+        reviews_list = "\n".join([f"{j+1}. {text[:500]}" for j, text in enumerate(batch_texts)])
+        
+        prompt = f"""You are a sentiment analysis expert. Classify each movie review as positive or negative sentiment.
+
+Reviews:
+{reviews_list}
+
+Respond with exactly one number per review (1 for positive, 0 for negative), separated by commas. Example: 1, 0, 1
+
+Classifications:"""
+        
+        response = client.chat.completions.create(
+            model=model,
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=len(batch_texts) * 5,
+            temperature=0
+        )
+        
+        result = response.choices[0].message.content.strip().lower()
+        predictions = [int(pred.strip()) if pred.strip() in ['0', '1'] else 0 
+                      for pred in result.split(",")]
+        all_predictions.extend(predictions)
+    
+    return all_predictions
+```
 
 And here are the comparisons: 
 - LSTM (from tutorial 4): Accuracy ~ 0.88 
@@ -141,12 +181,16 @@ This may not be a bold prediction, but I believe that large model capabilities w
 ## Tips and Tricks 
 
 ### LoRA Fine-tuning
-1. **Tune the rank parameter (r)**: The rank parameter is crucial for balancing efficiency and performance. Start with r=8 or r=16 and experiment. Higher ranks give more expressivity but use more parameters. Although I didn't fully explore this due to Colab resource limitations.
+**Tune the rank parameter (r)**: The rank parameter is crucial for balancing efficiency and performance. Start with r=8 or r=16 and experiment. Higher ranks give more expressivity but use more parameters. Although I didn't fully explore this due to Colab resource limitations.
 
 ### OpenAI API Optimization
-2. **Batch processing**: I batched the reviews to save on overhead costs when making API calls.
+**Batch processing**: I batched the reviews to save on overhead costs when making API calls.
 
-3. **Token optimization**: I used only the last 500 characters of each review to save tokens. This came from data analysis - I noticed that reviews often start with misleadingly positive notes but end with the actual sentiment (e.g., "this is my favorite childhood movie... but now I hate it so much"). I guess the more important tip here is **always examine your data first**. This is a technique that will hopefully never go out of date, even though the best models surely will. 
+**Token optimization**: I used only the last 500 characters of each review to save tokens. This came from data analysis - I noticed that reviews often start with misleadingly positive notes but end with the actual sentiment (e.g., "this is my favorite childhood movie... but now I hate it so much"). I guess the more important tip here is **always examine your data first**. This is a technique that will hopefully never go out of date, even though the best models surely will. 
+
+**Prompt tuning**: Few shot clearly outperforms zero-shot here. Most likely with some additonal error examples and prompt tuning, we could achieve even higher accuracy. 
+
+
 
 ## files
 - **`fine_tuning_lora_colab.ipynb`**: Google Colab notebook with optimized LoRA implementation, ready to run on free Colab tier
